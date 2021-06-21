@@ -1,4 +1,6 @@
-window._ = require('lodash');
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css' 
+
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
