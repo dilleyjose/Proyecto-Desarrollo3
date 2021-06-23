@@ -123,8 +123,9 @@
       return {
         items: [],  
         fields: [ 
-                  { key: 'diminutive', label: 'Diminutivo' } ,
-                  { key: 'description', label: 'Descripcion' } ,
+                  { key: 'name', label: 'Nombre' } ,
+                  { key: 'identity_card', label: 'Cedula' } ,
+                  { key: 'email', label: 'Correo' } ,
                   { key: 'actions', label: 'Acciones' } ,  
                 ],
         querySearch:"",
@@ -146,7 +147,7 @@
         this.currentPage = 1
       },
       getItems(){
-        axios.get("destinations/api").then((response) => {
+        axios.get("users/api").then((response) => {
           this.items = response.data
 
           // Set the initial number of items
@@ -167,7 +168,10 @@
       },
       updateItem(index,item_data){
         if( !this.querySearchInUse() ){
-          this.items[index].diminutive = item_data.diminutive
+          this.items[index].name = item_data.name
+          this.items[index].email = item_data.email
+          this.items[index].phone = item_data.phone
+          this.items[index].address = item_data.address
           this.items[index].description = item_data.description          
         }else{
           this.getItems()

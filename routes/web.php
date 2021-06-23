@@ -24,3 +24,9 @@ Route::get('/test', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/users/api', 'UsersController@getUsers');
+//Route::get('/users/api/clients_for_select', 'ClientsController@collectionForSelect');
+Route::post('/users/api', 'UsersController@store');
+Route::put('/users/api/{user_id}', 'UsersController@update');
+Route::delete('/users/api/{client_id}', 'UsersController@destroy');

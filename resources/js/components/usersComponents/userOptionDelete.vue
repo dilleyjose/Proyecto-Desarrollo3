@@ -26,7 +26,7 @@
         <b-col>
           <b-button 
             class="mx-0"
-            @click="deleteShipment"
+            @click="deleteItem"
             size="sm" 
             variant="danger"
             style="width: 100%;">
@@ -60,8 +60,8 @@
       }
     },
     methods:{
-      deleteShipment(){
-        axios.delete("destinations/api/" + this.itemID).then(() => {
+      deleteItem(){
+        axios.delete("users/api/" + this.itemID).then(() => {
           this.$emit('delete');
         },() => {
           this.makeToast(
