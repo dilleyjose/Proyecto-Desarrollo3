@@ -8,6 +8,8 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
+
+                    <b-alert variant="success" show>Success Alert</b-alert>
                     Prueba
                 </div>
             </div>
