@@ -36,7 +36,7 @@
         label="Direccion:"
         description="Direccion del usuario">
         <b-form-input
-          v-model="form.addres"
+          v-model="form.address"
           required
           placeholder="Direccion">    
         </b-form-input>
@@ -63,21 +63,21 @@
       </b-form-group>
 
       <b-form-group
-        label="Role:"
-        description="Role del usuario">
-        <b-form-input
+        label="Privilegios:"
+        description="Nivel de Acceso del Usuario">
+        <b-form-select 
           v-model="form.role"
-          required
-          placeholder="role">    
-        </b-form-input>
+          :options="options" 
+          size="sm" 
+          class="mt-3">    
+        </b-form-select>
       </b-form-group>
 
       <b-form-group
-        label="Contreseña:"
-        description="PassWord del Usuario">
+        label="Contraseña:"
+        description="Contraseña del Usuario">
         <b-form-input
           v-model="form.password"
-          required
           placeholder="Contraseña">    
         </b-form-input>
       </b-form-group>
@@ -110,10 +110,15 @@
           email: '',
           identity_card: '',
           phone: '',
-          addres: '',
-          role: '',
+          address: '',
+          position: '',
+          role: 'user',
           password: '',
         },
+        options: [
+          { value: 'user', text: 'Usuario sin Privilegios de administrador' },
+          { value: 'admin', text: 'Usuario con Privilegios de administrador' },
+        ],
         show: true,
       }
     },
@@ -123,7 +128,8 @@
         this.form.email = this.item.email;
         this.form.identity_card = this.item.identity_card;
         this.form.phone = this.item.phone;
-        this.form.addres = this.item.addres;
+        this.form.address = this.item.address;
+        this.form.position = this.item.position;
         this.form.role = this.item.role;
         this.form.password = this.item.password;
       }
@@ -136,8 +142,9 @@
         this.form.email = ''; 
         this.form.identity_card = ''; 
         this.form.phone = ''; 
-        this.form.addres = ''; 
-        this.form.role = ''; 
+        this.form.address = ''; 
+        this.form.position = ''; 
+        this.form.role = 'user'; 
         this.form.password = '';         
       },
       addItem(){
@@ -146,7 +153,8 @@
           email: this.form.email,
           identity_card: this.form.identity_card,
           phone: this.form.phone,
-          addres: this.form.addres,
+          address: this.form.address,
+          position: this.form.position,
           role: this.form.role,
           password: this.form.password,
         };
@@ -166,7 +174,8 @@
           email: this.form.email,
           identity_card: this.form.identity_card,
           phone: this.form.phone,
-          addres: this.form.addres,
+          address: this.form.address,
+          position: this.form.position,
           role: this.form.role,
           password: this.form.password
         };

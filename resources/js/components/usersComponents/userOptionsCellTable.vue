@@ -2,12 +2,12 @@
   <div>
     <b-row>
       <b-col cols="4">
-        <destination-option-update
+        <user-option-update
           :item = "item"
           @update="updateEmit( ...arguments)"/>
       </b-col>  
       <b-col cols="4">
-        <destination-option-delete
+        <user-option-delete
           :itemID ="item.id"
           @delete="$emit('delete')" />
       </b-col>

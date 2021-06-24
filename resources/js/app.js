@@ -14,7 +14,7 @@ Vue.component('users-component', require('./components/usersComponents/usersComp
 Vue.component('users-tablet', require('./components/usersComponents/usersTablet.vue').default);
 //Vue.component('users-details', require('./components/userssComponents/usersDetailsComponent').default);
 Vue.component('user-form', require('./components/usersComponents/userFormComponent').default);
-Vue.component('user-option-cell', require('./components/usersComponents/userOptionsCellTable.vue').default);
+Vue.component('user-options-cell', require('./components/usersComponents/userOptionsCellTable.vue').default);
 Vue.component('user-option-delete', require('./components/usersComponents/userOptionDelete.vue').default);
 Vue.component('user-option-update', require('./components/usersComponents/userOptionUpdate.vue').default);
 

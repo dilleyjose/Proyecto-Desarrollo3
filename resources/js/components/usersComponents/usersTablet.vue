@@ -108,7 +108,7 @@
       @filtered="onFiltered">
       
       <template v-slot:cell(actions)="row" align="center">
-        <destination-options-cell 
+        <user-options-cell
           :item="row.item"
           @delete="deleteItem(row.index)"
           @update="updateItem(row.index, ...arguments)"/>        
@@ -170,8 +170,10 @@
         if( !this.querySearchInUse() ){
           this.items[index].name = item_data.name
           this.items[index].email = item_data.email
+          this.items[index].identity_card = item_data.identity_card
           this.items[index].phone = item_data.phone
           this.items[index].address = item_data.address
+          this.items[index].position = item_data.position
           this.items[index].description = item_data.description          
         }else{
           this.getItems()

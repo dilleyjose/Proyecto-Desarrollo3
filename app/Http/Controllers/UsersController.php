@@ -26,7 +26,7 @@ class UsersController extends Controller
         return User::create(
             $request->only('name','email','identity_card','address','phone','position')
             + [
-                'role' => 'patient',
+                'role' => 'user',
                 'password' => bcrypt($request->input('password'))
             ]
         );
@@ -41,11 +41,21 @@ class UsersController extends Controller
     }
 
     public function update($id,Request $request){      
-        $destination = Destination::find($id);
-        $destination->diminutive = $request->diminutive;
-        $destination->description = $request->description;
-        $destination->save();
-        return $destination;
+
+        $user = User::find($id);
+
+        $data = $request->only('name','email','identity_card','address','phone','position');
+        $password = $request->input('password');
+        if($password)
+            $data['password'] = bcrypt($password);
+
+        $user->fill($data);
+        $user->save();// UPDATE
+
+        return $user;
+
+
+    
     }
 
     public function destroy($id){
