@@ -26,7 +26,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/users',[
-	'as' => 'userd.index',
+	'as' => 'users.index',
 	'uses' => 'UsersController@index'
 ]);
 
@@ -35,3 +35,24 @@ Route::get('/users/api', 'UsersController@getUsers');
 Route::post('/users/api', 'UsersController@store');
 Route::put('/users/api/{user_id}', 'UsersController@update');
 Route::delete('/users/api/{client_id}', 'UsersController@destroy');
+
+
+Route::get('/clients',[
+	'as' => 'clients.index',
+	'uses' => 'ClientsController@index'
+]);
+
+Route::get('/clients/api', 'ClientsController@getClients');
+Route::post('/clients/api', 'ClientsController@store');
+Route::put('/clients/api/{client_id}', 'ClientsController@update');
+Route::delete('/clients/api/{client_id}', 'ClientsController@destroy');
+
+Route::get('/suppliers',[
+	'as' => 'suppliers.index',
+	'uses' => 'SuppliersController@index'
+]);
+
+Route::get('/suppliers/api', 'SuppliersController@getSuppliers');
+Route::post('/suppliers/api', 'SuppliersController@store');
+Route::put('/suppliers/api/{supplier_id}', 'SuppliersController@update');
+Route::delete('/suppliers/api/{supplier_id}', 'SuppliersController@destroy');

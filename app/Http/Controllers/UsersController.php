@@ -24,9 +24,9 @@ class UsersController extends Controller
 
 
         return User::create(
-            $request->only('name','email','identity_card','address','phone','position')
+            $request->only('name','email','identity_card','address','phone','position','role')
             + [
-                'role' => 'user',
+                //'role' => 'user',
                 'password' => bcrypt($request->input('password'))
             ]
         );
@@ -44,7 +44,7 @@ class UsersController extends Controller
 
         $user = User::find($id);
 
-        $data = $request->only('name','email','identity_card','address','phone','position');
+        $data = $request->only('name','email','identity_card','address','phone','position','role');
         $password = $request->input('password');
         if($password)
             $data['password'] = bcrypt($password);

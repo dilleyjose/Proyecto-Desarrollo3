@@ -18,6 +18,20 @@ Vue.component('user-options-cell', require('./components/usersComponents/userOpt
 Vue.component('user-option-delete', require('./components/usersComponents/userOptionDelete.vue').default);
 Vue.component('user-option-update', require('./components/usersComponents/userOptionUpdate.vue').default);
 
+Vue.component('clients-component', require('./components/clientsComponents/clientsComponent').default);
+Vue.component('clients-tablet', require('./components/clientsComponents/clientsTablet.vue').default);
+Vue.component('client-form', require('./components/clientsComponents/clientFormComponent').default);
+Vue.component('client-options-cell', require('./components/clientsComponents/clientOptionsCellTable.vue').default);
+Vue.component('client-option-delete', require('./components/clientsComponents/clientOptionDelete.vue').default);
+Vue.component('client-option-update', require('./components/clientsComponents/clientOptionUpdate.vue').default);
+
+Vue.component('suppliers-component', require('./components/suppliersComponents/suppliersComponent').default);
+Vue.component('suppliers-tablet', require('./components/suppliersComponents/suppliersTablet.vue').default);
+Vue.component('supplier-form', require('./components/suppliersComponents/supplierFormComponent').default);
+Vue.component('supplier-options-cell', require('./components/suppliersComponents/supplierOptionsCellTable.vue').default);
+Vue.component('supplier-option-delete', require('./components/suppliersComponents/supplierOptionDelete.vue').default);
+Vue.component('supplier-option-update', require('./components/suppliersComponents/supplierOptionUpdate.vue').default);
+
 
 Vue.mixin({
   methods: {
