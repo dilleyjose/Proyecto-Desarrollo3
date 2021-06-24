@@ -25,6 +25,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/users',[
+	'as' => 'userd.index',
+	'uses' => 'UsersController@index'
+]);
+
 Route::get('/users/api', 'UsersController@getUsers');
 //Route::get('/users/api/clients_for_select', 'ClientsController@collectionForSelect');
 Route::post('/users/api', 'UsersController@store');

@@ -1,7 +1,7 @@
 <template>   
     <b-card class="my-0">
         <template v-slot:header>
-            <h4 class="mb-0">Trabajadores</h4>
+            <h4 class="mb-0">Usuarios</h4>
         </template>
         <b-row>  
             <b-col cols="12">

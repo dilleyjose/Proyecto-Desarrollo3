@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -20,11 +21,23 @@ class UsersController extends Controller
     }
     
     public function store(Request $request){
+
+
+        return User::create(
+            $request->only('name','email','identity_card','address','phone','position')
+            + [
+                'role' => 'patient',
+                'password' => bcrypt($request->input('password'))
+            ]
+        );
+
+/*
         $destination = new Destination();
         $destination->diminutive = $request->diminutive;
         $destination->description = $request->description;
         $destination->save();
-        return $destination;
+*/
+//        return $destination;
     }
 
     public function update($id,Request $request){      
