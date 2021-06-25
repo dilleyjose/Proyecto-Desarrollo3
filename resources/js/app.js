@@ -32,6 +32,13 @@ Vue.component('supplier-options-cell', require('./components/suppliersComponents
 Vue.component('supplier-option-delete', require('./components/suppliersComponents/supplierOptionDelete.vue').default);
 Vue.component('supplier-option-update', require('./components/suppliersComponents/supplierOptionUpdate.vue').default);
 
+Vue.component('products-component', require('./components/productsComponents/productsComponent').default);
+Vue.component('products-tablet', require('./components/productsComponents/productsTablet.vue').default);
+Vue.component('product-form', require('./components/productsComponents/productFormComponent').default);
+Vue.component('product-options-cell', require('./components/productsComponents/productOptionsCellTable.vue').default);
+Vue.component('product-option-delete', require('./components/productsComponents/productOptionDelete.vue').default);
+Vue.component('product-option-update', require('./components/productsComponents/productOptionUpdate.vue').default);
+
 
 Vue.mixin({
   methods: {

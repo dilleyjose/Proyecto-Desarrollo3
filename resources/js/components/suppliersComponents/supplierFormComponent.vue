@@ -3,18 +3,18 @@
     <b-form @submit.prevent="onClicksubmitFunction()" @reset="onReset" v-if="show">
       
       <b-form-group
-        label="Nombre Completo:"
-        description="Nombre del Usuario">
+        label="Nombre:"
+        description="Nombre del Proveedor">
         <b-form-input
           v-model="form.name"
           required
-          placeholder="Nombre Complero">    
+          placeholder="Nombre">    
         </b-form-input>
       </b-form-group>
 
       <b-form-group 
         label="Email:"
-        description="Email del Usuario">
+        description="Email del Proveedor">
         <b-form-input
           v-model="form.email"
           required
@@ -34,7 +34,7 @@
 
       <b-form-group
         label="Direccion:"
-        description="Direccion del usuario">
+        description="Direccion del Proveedor">
         <b-form-input
           v-model="form.address"
           required
@@ -44,7 +44,7 @@
 
       <b-form-group
         label="Telefono:"
-        description="Telefono del Usuario">
+        description="Telefono del Proveedor">
         <b-form-input
           v-model="form.phone"
           required
@@ -114,7 +114,7 @@
           address: this.form.address,
 
         };
-        axios.post("clients/api" , params).then((response) => {
+        axios.post("suppliers/api" , params).then((response) => {
           const item = response.data;
           this.$emit('add',item);   
         },() => {
@@ -133,7 +133,7 @@
           address: this.form.address,
 
         };
-        axios.put("clients/api/"+this.item.id , params).then((response) => {
+        axios.put("suppliers/api/"+this.item.id , params).then((response) => {
           const item_data = response.data;
           this.$emit('update',item_data);
         },() => {

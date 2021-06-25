@@ -11,7 +11,7 @@ class SuppliersController extends Controller
         return view('suppliers.index');       
     }
     
-    public function getClients(){        
+    public function getSuppliers(){        
         $suppliers = Supplier::all();
         return $suppliers;
     }

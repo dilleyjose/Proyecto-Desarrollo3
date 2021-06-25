@@ -56,3 +56,13 @@ Route::get('/suppliers/api', 'SuppliersController@getSuppliers');
 Route::post('/suppliers/api', 'SuppliersController@store');
 Route::put('/suppliers/api/{supplier_id}', 'SuppliersController@update');
 Route::delete('/suppliers/api/{supplier_id}', 'SuppliersController@destroy');
+
+Route::get('/products',[
+	'as' => 'products.index',
+	'uses' => 'ProductsController@index'
+]);
+
+Route::get('/products/api', 'ProductsController@getProducts');
+Route::post('/products/api', 'ProductsController@store');
+Route::put('/products/api/{product_id}', 'ProductsController@update');
+Route::delete('/products/api/{product_id}', 'ProductsController@destroy');

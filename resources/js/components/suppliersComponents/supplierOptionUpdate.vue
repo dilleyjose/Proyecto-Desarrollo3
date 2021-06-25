@@ -13,7 +13,7 @@
       size="lg" 
       title="Editar Registro"
       :hide-footer="true">
-      <client-form
+      <supplier-form
         :item="item"
         @update="updateEmit(...arguments)"/>
     </b-modal>
