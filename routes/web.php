@@ -66,3 +66,8 @@ Route::get('/products/api', 'ProductsController@getProducts');
 Route::post('/products/api', 'ProductsController@store');
 Route::put('/products/api/{product_id}', 'ProductsController@update');
 Route::delete('/products/api/{product_id}', 'ProductsController@destroy');
+
+Route::get('/invoices',[
+	'as' => 'invoices.index',
+	'uses' => 'InvoicesController@index'
+]);

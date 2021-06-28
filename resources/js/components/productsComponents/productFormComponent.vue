@@ -4,7 +4,7 @@
       
       <b-form-group
         label="Nombre:"
-        description="Nombre del Proveedor">
+        description="Nombre del Producto">
         <b-form-input
           v-model="form.name"
           required
@@ -12,19 +12,9 @@
         </b-form-input>
       </b-form-group>
 
-      <b-form-group 
-        label="Email:"
-        description="Email del Proveedor">
-        <b-form-input
-          v-model="form.email"
-          required
-          placeholder="Email">    
-        </b-form-input>
-      </b-form-group>
-
       <b-form-group
         label="Descripcion:"
-        description="Descripcion del Proveedor">
+        description="Descripcion del Producto">
         <b-form-input
           v-model="form.description"
           required
@@ -33,22 +23,22 @@
       </b-form-group>
 
       <b-form-group
-        label="Direccion:"
-        description="Direccion del Proveedor">
+        label="Stock:"
+        description="Stock del Producto">
         <b-form-input
-          v-model="form.address"
+          v-model="form.stock"
           required
-          placeholder="Direccion">    
+          placeholder="Stock">    
         </b-form-input>
       </b-form-group>
 
       <b-form-group
-        label="Telefono:"
-        description="Telefono del Proveedor">
+        label="Precio:"
+        description="Precio del Producto">
         <b-form-input
-          v-model="form.phone"
+          v-model="form.amount"
           required
-          placeholder="Telefono">    
+          placeholder="Monto">    
         </b-form-input>
       </b-form-group>
 
@@ -77,10 +67,9 @@
       return {
         form: {
           name: '',
-          email: '',
           description: '',
-          phone: '',
-          address: '',
+          amount: 0,
+          stock: 0,
         },
 
         show: true,
@@ -89,32 +78,28 @@
     mounted(){
       if(this.item){
         this.form.name = this.item.name;
-        this.form.email = this.item.email;
-        this.form.description = this.item.descripcion;
-        this.form.phone = this.item.phone;
-        this.form.address = this.item.address;
+        this.form.description = this.item.description;
+        this.form.amount = this.item.amount;
+        this.form.stock = this.item.stock;
       }
     },
     methods: {
       onReset(evt) {
         evt.preventDefault()
-
         this.form.name = '';
-        this.form.email = ''; 
-        this.form.description = ''; 
-        this.form.phone = ''; 
-        this.form.address = '';        
+        this.form.description = '';
+        this.form.amount = ''; 
+        this.form.stock = '';         
       },
       addItem(){
         const params = {
           name: this.form.name,
-          email: this.form.email,
-          description: this.description,
-          phone: this.form.phone,
-          address: this.form.address,
+          description: this.form.description,
+          amount: this.form.amount,
+          stock: this.form.stock,
 
         };
-        axios.post("suppliers/api" , params).then((response) => {
+        axios.post("products/api" , params).then((response) => {
           const item = response.data;
           this.$emit('add',item);   
         },() => {
@@ -127,13 +112,11 @@
       updateItem(){
         const params = {
           name: this.form.name,
-          email: this.form.email,
           description: this.form.description,
-          phone: this.form.phone,
-          address: this.form.address,
-
+          amount: this.form.amount,
+          stock: this.form.stock,
         };
-        axios.put("suppliers/api/"+this.item.id , params).then((response) => {
+        axios.put("products/api/"+this.item.id , params).then((response) => {
           const item_data = response.data;
           this.$emit('update',item_data);
         },() => {

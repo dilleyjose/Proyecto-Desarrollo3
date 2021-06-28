@@ -7,6 +7,10 @@ use App\Client;
 
 class ClientsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request){
         return view('clients.index');       
     }

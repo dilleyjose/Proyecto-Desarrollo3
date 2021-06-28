@@ -61,7 +61,7 @@
     },
     methods:{
       deleteItem(){
-        axios.delete("suppliers/api/" + this.itemID).then(() => {
+        axios.delete("products/api/" + this.itemID).then(() => {
           this.$emit('delete');
         },() => {
           this.makeToast(

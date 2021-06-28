@@ -48,9 +48,9 @@
         <b-modal 
           v-model="modalShow" 
           size="lg" 
-          title="Nuevo Proveedor"
+          title="Nuevo Producto"
           :hide-footer="true">
-          <supplier-form
+          <product-form
             @add="addItem(...arguments)"/>
         </b-modal>
       </b-col>  
@@ -106,7 +106,7 @@
       @filtered="onFiltered">
       
       <template v-slot:cell(actions)="row" align="center">
-        <supplier-options-cell
+        <product-options-cell
           :item="row.item"
           @delete="deleteItem(row.index)"
           @update="updateItem(row.index, ...arguments)"/>        
@@ -122,8 +122,8 @@
         items: [],  
         fields: [ 
                   { key: 'name', label: 'Nombre' } ,
-                  { key: 'phone', label: 'Telefono' } ,
-                  { key: 'email', label: 'Correo' } ,
+                  { key: 'stock', label: 'Cantidad' } ,
+                  { key: 'amount', label: 'Precio' } ,
                   { key: 'actions', label: 'Acciones' } ,  
                 ],
         querySearch:"",
@@ -145,7 +145,7 @@
         this.currentPage = 1
       },
       getItems(){
-        axios.get("suppliers/api").then((response) => {
+        axios.get("products/api").then((response) => {
           this.items = response.data
 
           // Set the initial number of items
@@ -167,10 +167,9 @@
       updateItem(index,item_data){
         if( !this.querySearchInUse() ){
           this.items[index].name = item_data.name
-          this.items[index].email = item_data.email
+          this.items[index].stock = item_data.stock
           this.items[index].description = item_data.description
-          this.items[index].phone = item_data.phone
-          this.items[index].address = item_data.address         
+          this.items[index].amount = item_data.amount         
         }else{
           this.getItems()
         }

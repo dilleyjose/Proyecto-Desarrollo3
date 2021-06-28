@@ -2,12 +2,12 @@
   <div>
     <b-row>
       <b-col cols="4">
-        <supplier-option-update
+        <product-option-update
           :item = "item"
           @update="updateEmit( ...arguments)"/>
       </b-col>  
       <b-col cols="4">
-        <supplier-option-delete
+        <product-option-delete
           :itemID ="item.id"
           @delete="$emit('delete')" />
       </b-col>

@@ -39,6 +39,13 @@ Vue.component('product-options-cell', require('./components/productsComponents/p
 Vue.component('product-option-delete', require('./components/productsComponents/productOptionDelete.vue').default);
 Vue.component('product-option-update', require('./components/productsComponents/productOptionUpdate.vue').default);
 
+Vue.component('invoices-component', require('./components/invoicesComponents/invoicesComponent.vue').default);
+Vue.component('invoice-form', require('./components/invoicesComponents/invoiceFormComponent').default);
+Vue.component('invoice-option-add-item', require('./components/invoicesComponents/invoiceOptionAddItem.vue').default);
+Vue.component('invoice-option-delete-item', require('./components/invoicesComponents/invoiceOptionDeleteItem.vue').default);
+Vue.component('invoice-select-client', require('./components/invoicesComponents/invoiceSelectClient.vue').default);
+Vue.component('invoice-option-create', require('./components/invoicesComponents/invoiceOptionCreate.vue').default);
+
 
 Vue.mixin({
   methods: {
