@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Invoice;
 
 class InvoicesController extends Controller
 {
@@ -15,7 +16,7 @@ class InvoicesController extends Controller
     }
 
     public function store(Request $request){
-        return Client::create(
+        return Invoice::create(
             $request->only('client_id','user_id')
         );
     }

@@ -26,11 +26,11 @@
         <b-col>
           <b-button 
             class="mx-0"
-            @click="deleteItem"
+            @click="createInvoice"
             size="sm" 
             variant="danger"
             style="width: 100%;">
-            eliminar
+            agregar
           </b-button>              
         </b-col>
 
@@ -52,25 +52,35 @@
 <script>
   export default {
     props:{
-      itemID: Number 
+      userID: Number,
+      clientID :Number 
     },
     data() {
       return {
         modalShow: false, 
       }
     },
+    mounted() {
+      //console.log("User: "+this.userID+"Client: "+this.clientID );
+    },
     methods:{
-      deleteItem(){
-        axios.delete("clients/api/" + this.itemID).then(() => {
-          this.$emit('delete');
+      createInvoice(){
+        const params = {
+          user_id: this.userID,
+          client_id: this.clientID,
+        };
+        //console.log("user_id:"+params.user_id);  
+        axios.post("invoices/api" , params).then((response) => {
+          const item = response.data;
+          this.$emit('createInvoice',item); 
         },() => {
           this.makeToast(
             "Notificacion",
             "Hubo un problema",
-            "danger");
+            "danger");          
         });
         this.modalShow = false;
-      }
+      }  
     }    
   }
 </script>

@@ -71,3 +71,5 @@ Route::get('/invoices',[
 	'as' => 'invoices.index',
 	'uses' => 'InvoicesController@index'
 ]);
+
+Route::post('/invoices/api', 'InvoicesController@store');

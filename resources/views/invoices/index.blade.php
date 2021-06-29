@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <!-- <invoices-component/> -->      
-
-    <invoice-select-client
+    <invoices-component
     	:user="{{ auth()->user() }}"
-    />
+    />      
+
+
 @endsection

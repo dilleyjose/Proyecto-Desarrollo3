@@ -40,6 +40,7 @@ Vue.component('product-option-delete', require('./components/productsComponents/
 Vue.component('product-option-update', require('./components/productsComponents/productOptionUpdate.vue').default);
 
 Vue.component('invoices-component', require('./components/invoicesComponents/invoicesComponent.vue').default);
+Vue.component('invoice-select-items', require('./components/invoicesComponents/invoiceSelectItems.vue').default);
 Vue.component('invoice-form', require('./components/invoicesComponents/invoiceFormComponent').default);
 Vue.component('invoice-option-add-item', require('./components/invoicesComponents/invoiceOptionAddItem.vue').default);
 Vue.component('invoice-option-delete-item', require('./components/invoicesComponents/invoiceOptionDeleteItem.vue').default);

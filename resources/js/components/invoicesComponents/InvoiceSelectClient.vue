@@ -1,8 +1,5 @@
 <template>   
-    <b-card class="my-0">
-        <template v-slot:header>
-            <h4 class="mb-0">Nueva Factura</h4>
-        </template>
+    <div>    
         <b-row>  
             <b-col cols="12">
                 <b-card>
@@ -116,8 +113,9 @@
                             <b-row>
                               <b-col cols="4">
                                 <invoice-option-create
-                                  :item = "item"
-                                  @update="updateEmit( ...arguments)"/>
+                                  :userID = "user.id"
+                                  :clientID = "row.item.id"
+                                  @createInvoice="createInvoice(...arguments)"/>
                               </b-col>  
                             </b-row>  
                           </template>
@@ -126,7 +124,7 @@
                 </b-card>   
             </b-col>                    
         </b-row>
-    </b-card>   
+    </div>      
 </template>
 
 <script>
@@ -153,7 +151,8 @@
       }
     },
     mounted() {
-      this.getItems()
+      this.getItems();
+      console.log(this.user);
     },
     methods:{
       onFiltered(filteredItems) {
@@ -181,33 +180,13 @@
           "Elemento Agregado con Exito",
           "success")      
       },
-      updateItem(index,item_data){
-        if( !this.querySearchInUse() ){
-          this.items[index].name = item_data.name
-          this.items[index].email = item_data.email
-          this.items[index].identity_card = item_data.identity_card
-          this.items[index].phone = item_data.phone
-          this.items[index].address = item_data.address         
-        }else{
-          this.getItems()
-        }
+      createInvoice(invoice){
+        console.log("Se ejecuto createInvoice")
+        this.$emit('changeMode',invoice);
         this.makeToast(
           "Notificacion",
-          "Elemento Actualizado con Exito",
-          "success")
-      },
-      deleteItem(index){
-        if( !this.querySearchInUse() ){
-          const target = this.getTarget(index)
-          this.items.splice(target, 1)
-          this.totalRows--
-        }else{
-          this.getItems()
-        }
-        this.makeToast(
-          "Notificacion",
-          "Elemento Eliminado con Exito",
-          "success")
+          "Elemento Agregado con Exito",
+          "success")      
       },
       getTarget(index){
         return ((this.currentPage * this.perPage) - this.perPage ) + index
