@@ -40,14 +40,11 @@
   export default {
     props:{
       item: Object,
+      invoice: Object,
     },
     data() {
       return {
         form: {
-          name: '',
-          description: '',
-          amount: 0,
-          stock: 0,
           quantity: 0,
         },
 
@@ -55,60 +52,30 @@
       }
     },
     mounted(){
-      if(this.item){
-        this.form.name = this.item.name;
-        this.form.description = this.item.description;
-        this.form.amount = this.item.amount;
-        this.form.stock = this.item.stock;
-      }
+
     },
     methods: {
       onReset(evt) {
         evt.preventDefault()
-        this.form.name = '';
-        this.form.description = '';
-        this.form.amount = ''; 
-        this.form.stock = '';         
+        this.form.quantity = 0;         
       },
-      /*
-      addItem(){
+      addItemInvoice(){
         const params = {
-          name: this.form.name,
-          description: this.form.description,
-          amount: this.form.amount,
-          stock: this.form.stock,
-
+          invoice_id: this.invoice.id,
+          product_id: this.item.id,
+          quantity: this.form.quantity,
+          amount: this.item.amount
         };
-        axios.post("products/api" , params).then((response) => {
-          const item = response.data;
-          this.$emit('add',item);   
+        axios.post("invoiceItems/api" , params).then((response) => {
+          const item_data = response.data;
+          this.$emit('addItemInvoice',item_data);
+
         },() => {
           this.makeToast(
             "Notificacion",
             "Hubo un problema",
             "danger");          
         });
-      },
-      */
-      addItemInvoice(){
-        const params = {
-          name: this.form.name,
-          description: this.form.description,
-          amount: this.form.amount,
-          stock: this.form.stock,
-        };
-        /*
-        axios.put("products/api/"+this.item.id , params).then((response) => {
-          const item_data = response.data;
-          this.$emit('update',item_data);
-        },() => {
-          this.makeToast(
-            "Notificacion",
-            "Hubo un problema",
-            "danger");
-        });
-        */
-        this.$emit('addItemInvoice',params);
       },
       onClicksubmitFunction(){
           this.addItemInvoice();

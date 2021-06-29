@@ -61,19 +61,18 @@
     },
     methods:{
       deleteItemInvoice(){
-        /*
-        axios.delete("destinations/api/" + this.itemID).then(() => {
-          this.$emit('delete');
+        
+        axios.delete("invoiceItems/api/" + this.item.id).then(() => {
+          this.$emit('deleteItemInvoice');
         },() => {
           this.makeToast(
             "Notificacion",
             "Hubo un problema",
             "danger");
         });
-        */
-        const item_data = this.item;
+
         this.modalShow = false;
-        this.$emit('deleteItemInvoice');
+        //this.$emit('deleteItemInvoice');
       }
     }    
   }

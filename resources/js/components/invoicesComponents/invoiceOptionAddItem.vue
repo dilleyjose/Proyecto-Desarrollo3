@@ -15,6 +15,7 @@
       :hide-footer="true">
       <invoice-form
         :item="item"
+        :invoice="invoice"
         @addItemInvoice="addItemInvoiceEmit(...arguments)"/>
     </b-modal>
   </div>
@@ -23,7 +24,8 @@
 <script>
   export default {
     props:{
-      item: Object 
+      item: Object ,
+      invoice: Object
     },
     data() {
       return {
@@ -32,25 +34,8 @@
     },
     methods:{
       addItemInvoiceEmit(item_data){
-
-        const params = {
-          invoice_id: this.invoice.id,
-          product_id: this.clientID,
-          quantity:0,
-          amount:0
-        };
-        axios.post("invoiceItems/api" , params).then((response) => {
-          const item = response.data;
-          this.$emit('addItemInvoice',item_data);
-
-        },() => {
-          this.makeToast(
-            "Notificacion",
-            "Hubo un problema",
-            "danger");          
-        });
+        this.$emit('addItemInvoice',item_data);
         this.modalShow = false;
-
       }
     }, 
   }

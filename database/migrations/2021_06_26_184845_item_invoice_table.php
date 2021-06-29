@@ -9,7 +9,7 @@ class ItemInvoiceTable extends Migration
 
     public function up()
     {
-        Schema::create('items_invoice', function (Blueprint $table) {
+        Schema::create('item_invoices', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('invoice_id');
@@ -25,6 +25,6 @@ class ItemInvoiceTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('items_invoice');
+        Schema::dropIfExists('item_invoices');
     }
 }

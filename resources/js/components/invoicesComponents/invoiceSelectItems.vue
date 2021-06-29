@@ -114,9 +114,34 @@
 
                             <b-row>
                               <b-col cols="8">
+ 
                                 <invoice-option-add-item
+                                  :invoice = "invoice"
                                   :item = "row.item"
                                   @addItemInvoice="addItemInvoice( ...arguments)"/>
+
+                              <!--
+                                <div>  
+                                  <b-button 
+                                    class="my-1 mx-2"
+                                    @click="modalShow = !modalShow"
+                                    size="sm" 
+                                    variant="info"
+                                    style="width: 100%;position: relative;">
+                                    +
+                                  </b-button>
+                                  <b-modal 
+                                    v-model="modalShow" 
+                                    size="lg" 
+                                    title="Agregar Producto"
+                                    :hide-footer="true">
+                                    <invoice-form
+                                      :item="row.item"
+                                      :invoice="invoice"
+                                      @addItemInvoice="addItemInvoice(...arguments)"/>
+                                  </b-modal>
+                                </div>  
+                              -->
                               </b-col>
                             </b-row> 
                               
@@ -138,17 +163,31 @@
                               hover 
                               :items="itemsInvoice"  
                               :fields="fields2">
+<!--
+                              <template v-slot:cell(name)="row" align="center">
+                                <b-row>
+                                  <b-col cols="8">
+                                    {{ row.item.product_name }}
+                                  </b-col>
+                                </b-row> 
+                              </template>
+-->
+                              <template v-slot:cell(total)="row" align="center">
+                                <b-row>
+                                  <b-col cols="8">
+                                    {{ row.item.amount * row.item.quantity }}
+                                  </b-col>
+                                </b-row> 
+                              </template>
                               
                               <template v-slot:cell(actions)="row" align="center">
-
                                 <b-row>
                                   <b-col cols="6">
                                     <invoice-option-delete-item
                                       :item = "row.item"
-                                      @deleteItemInvoice="deleteItemInvoice( row.index, row.item.amount)"/>
+                                      @deleteItemInvoice="deleteItemInvoice( row.index )"/>
                                   </b-col>
-                                </b-row> 
-                                  
+                                </b-row>    
                               </template>
                             </b-table>
 
@@ -170,22 +209,23 @@
   export default {
     props:{
       invoice: Object,
+      user: Object
     },
     data() {
       return {
         itemsInvoice: [],
         items: [],  
         fields: [ 
-                  { key: 'name', label: 'Nombre1' } ,
-                  { key: 'amount', label: 'Precio1' } ,
-                  { key: 'actions', label: 'Acciones1' } ,  
+                  { key: 'name', label: 'Nombre' } ,
+                  { key: 'amount', label: 'Precio' } ,
+                  { key: 'actions', label: 'Acciones' } ,  
                 ],
         fields2: [ 
-                  { key: 'name', label: 'Nombre2' } ,
-                  { key: 'amount', label: 'Precio2' } ,
-                  { key: 'stock', label: 'Cantidad2' } ,
-                  { key: 'total', label: 'Total2' } ,
-                  { key: 'actions', label: 'Acciones2' } ,  
+                  { key: 'product_name', label: 'Nombre' } ,
+                  { key: 'amount', label: 'Precio' } ,
+                  { key: 'quantity', label: 'Cantidad' } ,
+                  { key: 'total', label: 'Total' } ,
+                  { key: 'actions', label: 'Acciones' } ,  
         ],        
         querySearch:"",
         currentPage: 1,
@@ -228,8 +268,10 @@
       addItemInvoice(item){
           this.itemsInvoice.push(item)
           this.modalShow = false
-          this.totalRows++
-          this.totalAmount = parseFloat( this.totalAmount) + parseFloat( item.amount )
+          this.totalRows++          
+          this.totalAmount = parseFloat( this.totalAmount) + (parseFloat( item.amount ) * item.quantity)
+
+          console.log("Se Ejecuto addItemInvoice")
 
           this.makeToast(
             "Notificacion",
@@ -250,13 +292,15 @@
           "Elemento Actualizado con Exito",
           "success")
       },
-      deleteItemInvoice(index,amount){
+      deleteItemInvoice(index){
         if( !this.querySearchInUse() ){
+          this.totalAmount = parseFloat( this.totalAmount) -( parseFloat( this.itemsInvoice[index].amount ) *  this.itemsInvoice[index].quantity)
+          
           const target = this.getTarget(index)
           this.itemsInvoice.splice(target, 1)
           this.totalRows--
 
-          this.totalAmount = parseFloat( this.totalAmount) - parseFloat( amount )
+          
         }else{
           this.getItems()
         }

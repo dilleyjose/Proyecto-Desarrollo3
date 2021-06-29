@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Invoice;
+use App\ItemInvoice;
 
 class InvoicesController extends Controller
 {
@@ -20,4 +21,21 @@ class InvoicesController extends Controller
             $request->only('client_id','user_id')
         );
     }
+
+    public function storeItem(Request $request){
+        
+        $Item = ItemInvoice::create(
+            $request->only('invoice_id','product_id','quantity','amount')
+        );
+
+        $Item->product_name = $Item->product->name;
+
+        return $Item;
+    }
+
+    public function destroyItem($id){
+        $Item = ItemInvoice::find($id);
+        $Item->delete();
+    }
+
 }

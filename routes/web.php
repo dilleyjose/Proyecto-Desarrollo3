@@ -73,3 +73,8 @@ Route::get('/invoices',[
 ]);
 
 Route::post('/invoices/api', 'InvoicesController@store');
+
+
+Route::post('/invoiceItems/api', 'InvoicesController@storeItem');
+Route::delete('/invoiceItems/api/{item_id}', 'InvoicesController@destroyItem');
+

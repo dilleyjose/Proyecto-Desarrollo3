@@ -11,6 +11,7 @@
                         @changeMode="changeMode(...arguments)"
                     />
                     <invoice-select-items v-else-if="modeComponent === 'selectItems'"
+                        :user="user"
                         :invoice="invoiceSelected"
                     />
                 </b-card>   
