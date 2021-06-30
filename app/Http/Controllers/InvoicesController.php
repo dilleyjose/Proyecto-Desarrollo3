@@ -23,7 +23,17 @@ class InvoicesController extends Controller
 
     
     public function getInvoices(){        
-        return Invoice::all();
+        
+        $Invoices = Invoice::all();
+
+        foreach ($Invoices as $Invoice ) {
+            $Invoice->client_name = $Invoice->client->name;
+            $Invoice->identity_card = $Invoice->client->identity_card;
+            $Invoice->create_date = $Invoice->create_at;
+            
+        }
+
+        return $Invoices;
     }
 
     public function store(Request $request){
@@ -59,6 +69,16 @@ class InvoicesController extends Controller
     public function destroyItem($id){
         $Item = ItemInvoice::find($id);
         $Item->delete();
+    }
+
+    public function destroy($id){
+        $Invoice = Invoice::find($id);
+
+        foreach ($Invoice->items as $Item ) {
+            $Item->delete();
+        }
+
+        $Invoice->delete();
     }
 
 }

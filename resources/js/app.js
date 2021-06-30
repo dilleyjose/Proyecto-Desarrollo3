@@ -46,7 +46,8 @@ Vue.component('invoice-option-add-item', require('./components/invoicesComponent
 Vue.component('invoice-option-delete-item', require('./components/invoicesComponents/invoiceOptionDeleteItem.vue').default);
 Vue.component('invoice-select-client', require('./components/invoicesComponents/invoiceSelectClient.vue').default);
 Vue.component('invoice-option-create', require('./components/invoicesComponents/invoiceOptionCreate.vue').default);
-Vue.component('invoices-tablet', require('./components/invoicesComponents/invoiceTablet.vue').default);
+Vue.component('invoice-option-delete', require('./components/invoicesComponents/invoiceOptionDelete.vue').default);
+Vue.component('invoices-tablet', require('./components/invoicesComponents/invoicesTablet.vue').default);
 
 
 Vue.mixin({
