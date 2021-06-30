@@ -1,9 +1,10 @@
 <template>   
       <div>
-        <b-row>  
+        <b-row>   
             <b-col cols="4">
                 <b-card>
                     <div>
+
                         <b-row>
                           <b-col lg="12" class="my-1">   
                             <b-form-group 
@@ -118,7 +119,7 @@
                                 <invoice-option-add-item
                                   :invoice = "invoice"
                                   :item = "row.item"
-                                  @addItemInvoice="addItemInvoice( ...arguments)"/>
+                                  @addItemInvoice="addItemInvoice(row.index , ...arguments)"/>
 
                               <!--
                                 <div>  
@@ -156,7 +157,7 @@
                  
                 <b-card>
                     <b-row>    
-                        <b-col cols="10">
+                        <b-col cols="9">
 
                             <b-table  
                               striped 
@@ -185,7 +186,11 @@
                                   <b-col cols="6">
                                     <invoice-option-delete-item
                                       :item = "row.item"
-                                      @deleteItemInvoice="deleteItemInvoice( row.index )"/>
+                                      @deleteItemInvoice=
+                                        "deleteItemInvoice(
+                                            row.item.quantity, 
+                                            row.item.product_index, 
+                                            row.index )"/>
                                   </b-col>
                                 </b-row>    
                               </template>
@@ -193,7 +198,9 @@
 
                         </b-col>
 
-                        <b-col cols="2">
+                        <b-col cols="3">
+                            <h6>Cliente:</h6> <h5>{{ invoice.client_name }}</h5>
+                            <h6>Factura Nro:</h6> <h3>{{ invoice.id }}</h3>
                             <h6>TOTAL:</h6> <h3>{{ totalAmount }}</h3>
                         </b-col>
 
@@ -223,7 +230,7 @@
         fields2: [ 
                   { key: 'product_name', label: 'Nombre' } ,
                   { key: 'amount', label: 'Precio' } ,
-                  { key: 'quantity', label: 'Cantidad' } ,
+                  { key: 'quantity', label: 'Cant' } ,
                   { key: 'total', label: 'Total' } ,
                   { key: 'actions', label: 'Acciones' } ,  
         ],        
@@ -265,12 +272,21 @@
           this.querySearch = " "
         });
       },
-      addItemInvoice(item){
+      addItemInvoice(product_index, item){
+          this.items[product_index].stock -= item.quantity  
+          item.product_index = product_index
+          console.log("addItem");
+          console.log(item);
           this.itemsInvoice.push(item)
           this.modalShow = false
-          this.totalRows++          
-          this.totalAmount = parseFloat( this.totalAmount) + (parseFloat( item.amount ) * item.quantity)
+          this.totalRows++
 
+          this.totalAmount = parseFloat( this.totalAmount)
+          item.amount = parseFloat( item.amount )        
+          this.totalAmount += (item.amount  * item.quantity)
+
+          
+            
           console.log("Se Ejecuto addItemInvoice")
 
           this.makeToast(
@@ -292,18 +308,21 @@
           "Elemento Actualizado con Exito",
           "success")
       },
-      deleteItemInvoice(index){
-        if( !this.querySearchInUse() ){
-          this.totalAmount = parseFloat( this.totalAmount) -( parseFloat( this.itemsInvoice[index].amount ) *  this.itemsInvoice[index].quantity)
+      deleteItemInvoice(quantity, product_index , index_item){
+          //this.totalAmount = parseFloat( this.totalAmount)
+          this.itemsInvoice[index_item].amount = parseFloat( this.itemsInvoice[index_item].amount )        
+          this.totalAmount -= ( this.itemsInvoice[index_item].amount * this.itemsInvoice[index_item].quantity)
           
-          const target = this.getTarget(index)
+
+          this.items[product_index].stock = parseInt(this.items[product_index].stock);
+          quantity = parseInt(quantity);
+
+          this.items[product_index].stock += quantity
+
+          const target = this.getTarget(index_item)
           this.itemsInvoice.splice(target, 1)
           this.totalRows--
 
-          
-        }else{
-          this.getItems()
-        }
         this.makeToast(
           "Notificacion",
           "Elemento Eliminado con Exito",
@@ -314,7 +333,8 @@
       },
       querySearchInUse(){
         return !(this.querySearch == " " || this.querySearch == "")
-      }
+      },
+
     }, 
   }
 </script>

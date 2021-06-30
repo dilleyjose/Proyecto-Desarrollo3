@@ -29,6 +29,15 @@
 
             <b-collapse id="nav-text-collapse" is-nav>
           
+                <b-navbar-nav>
+                    <b-nav-item href="/products">Productos</b-nav-item>
+                    <b-nav-item href="/clients">Clientes</b-nav-item>
+                    <b-nav-item href="/suppliers">Proveedores</b-nav-item>
+                    <b-nav-item href="/invoices">Facturacion</b-nav-item>
+                    <b-nav-item href="/users">Usuarios</b-nav-item>
+                    <b-nav-item href="#" disabled>Disabled</b-nav-item>
+                </b-navbar-nav>
+
                 <b-navbar class="ml-auto">
                     <b-navbar-nav>
                         @guest

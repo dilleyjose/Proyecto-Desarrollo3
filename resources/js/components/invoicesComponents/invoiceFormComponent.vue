@@ -60,25 +60,44 @@
         this.form.quantity = 0;         
       },
       addItemInvoice(){
-        const params = {
-          invoice_id: this.invoice.id,
-          product_id: this.item.id,
-          quantity: this.form.quantity,
-          amount: this.item.amount
-        };
-        axios.post("invoiceItems/api" , params).then((response) => {
-          const item_data = response.data;
-          this.$emit('addItemInvoice',item_data);
+        if(this.StockValidation(this.form.quantity,this.item.stock)){
+          const params = {
+            invoice_id: this.invoice.id,
+            product_id: this.item.id,
+            quantity: this.form.quantity,
+            amount: this.item.amount
+          };
+          axios.post("invoiceItems/api" , params).then((response) => {
+            const item_data = response.data;
+            this.$emit('addItemInvoice',item_data);
 
-        },() => {
-          this.makeToast(
-            "Notificacion",
-            "Hubo un problema",
-            "danger");          
-        });
+          },() => {
+            this.makeToast(
+              "Notificacion",
+              "Hubo un problema",
+              "danger");          
+          });
+        }  
       },
       onClicksubmitFunction(){
           this.addItemInvoice();
+      },
+      StockValidation(quantity , stock){
+        if( quantity > stock ){
+          console.log("cantidad es mayor a stock")
+          console.log("quantity:"+quantity)
+          console.log("stock:"+stock)
+          this.makeToast(
+            "Notificacion",
+            "Stock no Suficiente",
+            "danger");
+          return false
+        }else{
+          console.log("cantidad es menor a stock")
+          console.log("quantity:"+quantity)
+          console.log("stock:"+stock)
+          return true
+        }
       }
     }
   }

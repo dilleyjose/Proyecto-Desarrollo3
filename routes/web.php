@@ -72,9 +72,17 @@ Route::get('/invoices',[
 	'uses' => 'InvoicesController@index'
 ]);
 
+Route::get('/invoices/controlInvoices',[
+	'as' => 'invoices.controlInvoices',
+	'uses' => 'InvoicesController@controlInvoices'
+]);
+
 Route::post('/invoices/api', 'InvoicesController@store');
 
 
 Route::post('/invoiceItems/api', 'InvoicesController@storeItem');
 Route::delete('/invoiceItems/api/{item_id}', 'InvoicesController@destroyItem');
+
+Route::get('invoices/api/getInvoices', 'InvoicesController@getInvoices');
+
 
