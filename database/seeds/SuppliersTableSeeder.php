@@ -13,7 +13,7 @@ class SuppliersTableSeeder extends Seeder
 	        'name' => 'Materiales Guayana',
 	        'description' => 'Distribuidor de Herramientas Varias',
 	        'email' => 'materialesguayana@example.com',
-	        'addres' => 'Unares',
+	        'address' => 'Unares',
 	        'phone' => '0412-8784333',
 	    ]);
 
@@ -21,7 +21,7 @@ class SuppliersTableSeeder extends Seeder
 	        'name' => 'FerreMax',
 	        'description' => 'Distribuidor de Herramientas Varias',
 	        'email' => 'FerreMax@example.com',
-	        'addres' => 'Unares',
+	        'address' => 'Unares',
 	        'phone' => '0412-8784333',
 	    ]);
 
@@ -29,7 +29,7 @@ class SuppliersTableSeeder extends Seeder
 	        'name' => 'ElectricImport',
 	        'description' => 'Distribuidor de Materiales Electricos',
 	        'email' => 'electricimport@example.com',
-	        'addres' => 'San Felix',
+	        'address' => 'San Felix',
 	        'phone' => '0412-8784333',
 	    ]);
 
@@ -37,7 +37,7 @@ class SuppliersTableSeeder extends Seeder
 	        'name' => 'FerreTotal',
 	        'description' => 'Distribuidor de Herramientas Varias',
 	        'email' => 'Ferretotal@example.com',
-	        'addres' => 'Sierra Parima',
+	        'address' => 'Sierra Parima',
 	        'phone' => '0412-8784333',
 	    ]);
     }

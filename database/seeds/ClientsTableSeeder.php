@@ -10,7 +10,7 @@ class ClientsTableSeeder extends Seeder
     public function run()
     {
        	Client::create([
-	        'name' => 'Jhonny Carpenito',
+	        'name' => 'Jhonny Jimenez',
 	        'email' => 'jhonny@example.com',
 	        'identity_card' => '25744294',
 	        'address' => 'Unare 1',
@@ -34,7 +34,7 @@ class ClientsTableSeeder extends Seeder
 	    ]);	
 
 	    Client::create([
-	        'name' => 'Luis Carpenito',
+	        'name' => 'Luis Jimenez',
 	        'email' => 'luis@example.com',
 	        'identity_card' => '25744555',
 	        'address' => 'Unare 1',
