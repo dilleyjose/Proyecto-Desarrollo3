@@ -34,14 +34,7 @@ class UsersController extends Controller
                 'password' => bcrypt($request->input('password'))
             ]
         );
-
-/*
-        $destination = new Destination();
-        $destination->diminutive = $request->diminutive;
-        $destination->description = $request->description;
-        $destination->save();
-*/
-//        return $destination;
+        
     }
 
     public function update($id,Request $request){      

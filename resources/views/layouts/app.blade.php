@@ -31,13 +31,17 @@
           
                 <b-navbar-nav>
                     @guest
-                        <b-nav-item href="#" disabled>Disabled</b-nav-item>
+                        <!--<b-nav-item href="#" disabled>Disabled</b-nav-item>-->
                     @else
-                        <b-nav-item href="/products">Productos</b-nav-item>
-                        <b-nav-item href="/clients">Clientes</b-nav-item>
-                        <b-nav-item href="/suppliers">Proveedores</b-nav-item>
                         <b-nav-item href="/invoices">Facturacion</b-nav-item>
-                        <b-nav-item href="/users">Usuarios</b-nav-item>
+
+                        @if( auth()->user()->role == 'admin')
+                            <b-nav-item href="/clients">Clientes</b-nav-item>
+                            <b-nav-item href="/products">Productos</b-nav-item>
+                            <b-nav-item href="/suppliers">Proveedores</b-nav-item>
+                            <b-nav-item href="/invoices/controlInvoices">Facturas</b-nav-item>
+                            <b-nav-item href="/users">Usuarios</b-nav-item>
+                        @endif    
                     @endguest     
                         
                 </b-navbar-nav>
@@ -46,7 +50,7 @@
                     <b-navbar-nav>
                         @guest
                             <b-nav-item href="{{ route('login') }}">Ingresar</b-nav-item>
-                            <b-nav-item href="{{ route('register') }}">Registro</b-nav-item>
+                            <!-- <b-nav-item href="{{ route('register') }}">Registro</b-nav-item> -->
                         @else
                             <!-- Navbar dropdowns -->
                             <b-nav-item-dropdown text="{{ auth()->user()->name }}" right>

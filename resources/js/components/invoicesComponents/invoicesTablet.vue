@@ -93,17 +93,46 @@
                         :current-page="currentPage"
                         :per-page="perPage"
                         @filtered="onFiltered">
-                        
-                        <template v-slot:cell(actions)="row" align="center">
 
+                        <template v-slot:cell(date)="row" align="center">
                           <b-row>
-                            <b-col cols="4">
-                              <invoice-option-delete
-                                :itemID ="row.item.id"
-                                @delete="deleteItem(row.index)" />
+                            <b-col cols="10">
+                              {{ dateFormat(row.item.created_at) }}
                             </b-col>
                           </b-row>
-      
+                        </template>
+                        
+                        <template v-slot:cell(actions)="row" align="center">
+                          <b-button 
+                            size="sm"
+                            variant="primary"
+                            @click="row.toggleDetails">
+                            {{ row.detailsShowing ? 'Cerrar' : 'Ver' }}
+                          </b-button> 
+                        </template>
+
+                        <template v-slot:row-details="row">
+                          <b-card>
+                            <b-row>
+                              <b-col cols="6">
+                                <invoice-details
+                                  :invoiceID="row.item.id"/> 
+                              </b-col>
+                              
+                              <b-col cols="4">
+                              </b-col>
+                                
+                              <b-col cols="2"> 
+                                <b-row>
+                                  <b-col cols="8">
+                                    <invoice-option-delete
+                                      :itemID ="row.item.id"
+                                      @delete="deleteItem(row.index)" />
+                                  </b-col>
+                                </b-row>
+                              </b-col>
+                            </b-row>
+                          </b-card>
                         </template>
                       </b-table>
                     </div>
@@ -121,9 +150,9 @@
         items: [],  
         fields: [ 
                   { key: 'id', label: 'Nro.Factura' }, 
-                  { key: 'client_name', label: 'Nombre' } ,
+                  { key: 'client.name', label: 'Nombre' } ,
                   { key: 'identity_card', label: 'Cedula' } ,
-                  { key: 'created_at', label: 'Fecha' } ,
+                  { key: 'date', label: 'Fecha' } ,
                   { key: 'amount', label: 'Monto' } ,
                   { key: 'actions', label: 'Acciones' } ,  
                 ],
@@ -197,7 +226,12 @@
       },
       querySearchInUse(){
         return !(this.querySearch == " " || this.querySearch == "")
+      },
+      dateFormat(date){
+          return moment( date)
+              .locale("es")
+              .format('MMMM Do YYYY, h:mm:ss a');
       }
-    }, 
+    },
   }
 </script>

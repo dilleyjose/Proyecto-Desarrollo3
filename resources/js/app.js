@@ -48,6 +48,7 @@ Vue.component('invoice-select-client', require('./components/invoicesComponents/
 Vue.component('invoice-option-create', require('./components/invoicesComponents/invoiceOptionCreate.vue').default);
 Vue.component('invoice-option-delete', require('./components/invoicesComponents/invoiceOptionDelete.vue').default);
 Vue.component('invoices-tablet', require('./components/invoicesComponents/invoicesTablet.vue').default);
+Vue.component('invoice-details', require('./components/invoicesComponents/invoiceDetails.vue').default);
 
 
 Vue.mixin({
@@ -73,6 +74,8 @@ Vue.mixin({
 const app = new Vue({
     el: '#app',
     methods:{
-
-    },
+        logout(){
+            document.getElementById('logout-form').submit();
+        }
+    }
 });
