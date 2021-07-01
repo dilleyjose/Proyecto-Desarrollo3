@@ -13,7 +13,7 @@ class ProductsTableSeeder extends Seeder
 	        'name' => 'Alicate',
 	        'description' => 'Marca Dewar',
 	        'stock' => 3,
-	        'amount' => 4.99,
+	        'amount' => 6,
 	    ]);
 
 	    Product::create([
@@ -27,14 +27,14 @@ class ProductsTableSeeder extends Seeder
 	        'name' => 'Martillo',
 	        'description' => 'Marca Dewar',
 	        'stock' => 5,
-	        'amount' => 9.99,
+	        'amount' => 8,
 	    ]);
 
 	    Product::create([
 	        'name' => 'Esmeril',
 	        'description' => 'Marca Dewar',
 	        'stock' => 6,
-	        'amount' => 7.99,
+	        'amount' => 7,
 	    ]);
     }
 }
